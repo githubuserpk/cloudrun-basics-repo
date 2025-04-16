@@ -36,7 +36,7 @@ on:
 
 env:
   PROJECT_ID: pk-aiproject
-  REGION: us-central1
+  REGION: us-south1
   SERVICE_NAME: helloservice1
   IMAGE_NAME: helloservice1-image
   REPO_NAME: helloservice-repo
@@ -99,12 +99,12 @@ jobs:
             --format="value(status.url)"
 
       
-      # - name: Clean up old cloudbuild .tgz files from GCS
-      #   run: |
-      #     BUCKET_NAME="gs://pk-aiproject_cloudbuild/source"
+      - name: Clean up old cloudbuild .tgz files from GCS
+        run: |
+          BUCKET_NAME="gs://pk-aiproject_cloudbuild/source"
 
-      #     echo "Listing files in $BUCKET_NAME"
-      #     gsutil ls -l $BUCKET_NAME/*.tgz | sort -k2 -r | tail -n +6 | awk '{print $NF}' | xargs -r gsutil rm      
+          echo "Listing files in $BUCKET_NAME"
+          gsutil ls -l $BUCKET_NAME/*.tgz | sort -k2 -r | tail -n +6 | awk '{print $NF}' | xargs -r gsutil rm      
 
 
 
